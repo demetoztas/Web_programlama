@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Üye Kayıt Formu</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+    #uyeForm {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+</style>
+<script>
+$(document).ready(function(){
+    $("#kaydetBtn").click(function(){
+        var eposta = $("#eposta").val();
+        var ad = $("#ad").val();
+        var soyad = $("#soyad").val();
+        var cepTelefonu = $("#cepTelefonu").val();
+        var sifre = $("#sifre").val();
+        var sifreTekrar = $("#sifreTekrar").val();
+
+        var epostaRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!epostaRegex.test(eposta)) {
+            alert("Lütfen geçerli bir e-posta adresi girin.");
+            return;
+        }
+
+        if (ad === '' || soyad === '' || cepTelefonu === '' || sifre === '' || sifreTekrar === '') {
+            alert("Lütfen tüm alanları doldurun.");
+            return;
+        }
+
+        if (sifre !== sifreTekrar) {
+            alert("Girdiğiniz şifreler eşleşmiyor.");
+            return;
+        }
+
+        var bilgiler = "eposta=" + encodeURIComponent(eposta) + "&ad=" + encodeURIComponent(ad) + "&soyad=" + encodeURIComponent(soyad) + "&cepTelefonu=" + encodeURIComponent(cepTelefonu);
+        window.location.href = "sayfa2.html?" + bilgiler;
+    });
+});
+</script>
+</head>
+<body>
+<form id="uyeForm">
+    <label for="eposta">E-posta:</label><br>
+    <input type="text" id="eposta" name="eposta"><br>
+    <label for="ad">Ad:</label><br>
+    <input type="text" id="ad" name="ad"><br>
+    <label for="soyad">Soyad:</label><br>
+    <input type="text" id="soyad" name="soyad"><br>
+    <label for="cepTelefonu">Cep Telefonu:</label><br>
+    <input type="text" id="cepTelefonu" name="cepTelefonu"><br>
+    <label for="sifre">Şifre:</label><br>
+    <input type="password" id="sifre" name="sifre"><br>
+    <label for="sifreTekrar">Şifre Tekrar:</label><br>
+    <input type="password" id="sifreTekrar" name="sifreTekrar"><br><br>
+    <button type="button" id="kaydetBtn">Kaydet</button>
+</form>
+</body>
+</html>
+
+
+
+
+

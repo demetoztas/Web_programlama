@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Üye Bilgileri</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+    #uyeBilgileri {
+        max-width: 400px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<script>
+$(document).ready(function(){
+    
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    var eposta = getUrlParameter('eposta');
+    var ad = getUrlParameter('ad');
+    var soyad = getUrlParameter('soyad');
+    var cepTelefonu = getUrlParameter('cepTelefonu');
+
+    var bilgiler = "E-posta: " + eposta + "<br>Ad: " + ad + "<br>Soyad: " + soyad + "<br>Cep Telefonu: " + cepTelefonu;
+    $("#uyeBilgileri").html(bilgiler);
+});
+</script>
+</head>
+<body>
+<h2>Üye Bilgileri</h2>
+<div id="uyeBilgileri"></div>
+</body>
+</html>
+
+
+
+
